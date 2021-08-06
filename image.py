@@ -20,6 +20,10 @@ class BodyPart:
         self.max_h = 0
         self.scale_factor = 0
     
+    def deep_copy(self):
+        new_bp = BodyPart(self.surface, self.x, self.y, self.visible, self.color)
+        
+    
     def update_max_width(self):
         for row in range(len(self.pixels)):
             if len(self.pixels[row]) > self.max_w: self.max_w = len(self.pixels[row])                

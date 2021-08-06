@@ -105,6 +105,7 @@ while running:
     display_mouse_pos()
     for name, obj in game_objects.items(): 
         if obj.visible: obj.draw()
-        if game_objects['head_drawing_board'].visible == False: game_objects['head_drawing_board'].draw_compressed_image(160, 40)
+        #if game_objects['head_drawing_board'].visible == False: game_objects['head_drawing_board'].draw_compressed_image(160, 40)
+        
     pygame.display.update()
     clock.tick(60)  
