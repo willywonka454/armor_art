@@ -3,63 +3,18 @@ from button import Button
 from image import BodyPart
 
 class DrawingBoard(Button):
-    def __init__(self, surface = None, x = 0, y = 0, width = 100, height = 40, text = None, visible = True, pixel_width = 1, body_part = None):
-        Button.__init__(self, surface, x, y, width, height, text, visible)
+    def __init__(self, surface = None, x = 0, y = 0, width = 100, height = 40, visible = True, pixel_width = 1):
+        Button.__init__(self, surface, x, y, width, height, None, visible)
         self.pixel_width = pixel_width
         self.pixels = self.initialize_pixel_buttons()
         self.previous_colors = []
-        self.body_part = body_part; self.center_bp()
-        self.compressed_image = self.compress()
         self.gui = self.set_up_gui()
         self.pen_color = (255, 255, 255)
         self.msb_down = None; self.msb_up = None
-    
-        # None = do not draw
-        # Keep track of which pixels changed to make more efficient -- only draw pixels that changed
-    
-    def center_bp(self):
-        self.body_part.x = self.x + (self.width - self.body_part.max_w) // 2
-        self.body_part.y = self.y + (self.height - self.body_part.max_h) // 2
-    
-    def draw_compressed_image(self, target_x, target_y):
-        x = target_x
-        y = target_y
-        for row in range(len(self.compressed_image)):
-            x = target_x
-            for col in range(len(self.compressed_image[row])):
-                self.surface.set_at((x, y), self.compressed_image[row][col])
-                x += 1
-            y += 1
-    
-    def compress(self):
-        number_of_pixels_to_compress = self.body_part.scale_factor
-        length_of_new_area = self.width // self.body_part.scale_factor
-        compressed_pixel_arr = [[None for col in range(length_of_new_area)] for row in range(length_of_new_area)]
-        pixels_to_average = []
-        for row in range(len(compressed_pixel_arr)):
-            for col in range(len(compressed_pixel_arr[row])):                
-                y = self.y + (row * 2)
-                while(y < self.y + (row * 2) + number_of_pixels_to_compress):
-                    x = self.x + (col * 2)
-                    while(x < self.x + (col * 2) + number_of_pixels_to_compress):
-                        pixel_color = self.surface.get_at((x, y))
-                        pixels_to_average.append(pixel_color)
-                        x += 1
-                    y += 1
-                compressed_pixel_arr[row][col] = self.find_average_color(pixels_to_average)
-                pixels_to_average.clear()
-        print(len(compressed_pixel_arr))
-        print("finished")           
-        return compressed_pixel_arr
-    
-    def find_average_color(self, arr):
-        color_sum = [0, 0, 0]
-        for color in arr:
-            for i in range(3):
-                color_sum[i] += color[i]
-        for i in range(3):
-            color_sum[i] = color_sum[i] // len(arr)
-        return tuple(color_sum)
+        self.compressed_image = None
+        
+    def compress():
+        pass
         
     def set_up_gui(self):
         gui_objects = {
