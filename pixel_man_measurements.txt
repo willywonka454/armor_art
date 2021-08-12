@@ -6,9 +6,3 @@ r_arm = 100x20
 l_leg = 20x120
 r_leg = 20x120
 total: 280x340
-
-#'head_save_area': MySurface(screen, 110, -10, 180, 180, (255, 0, 0), True),
-#'torso_save_area': MySurface(screen, 110, 110, 180, 180, (0, 255, 0), True),
-#'larm_save_area': MySurface(screen, 20, 60, 180, 180, (255, 0, 255), True),
-#'rarm_save_area': MySurface(screen, 200, 60, 180, 180, (0, 0, 255), True),
-#'lower_save_area': MySurface(screen, 110, 230, 180, 180, (0, 255, 255), True),

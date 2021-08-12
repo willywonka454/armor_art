@@ -29,6 +29,9 @@ class GameObject:
     def draw(self):
         pass
 
+    def create_copy(self):
+        pass
+
 class MyImage(GameObject):
     def __init__(self, surface, addr, x, y, visible):
         self.addr = addr
@@ -62,6 +65,16 @@ class DrawingArea(GameObject):
     def __init__(self, surface, x, y, w, h, color, visible):
         GameObject.__init__(self, surface, x, y, w, h, color, visible)
         self.canvas = MySurface(surface, x, y, w, h, color, visible)
+        button_color = (128, 128, 128)
+        self.gui_objects = {
+            'undo_button': MyButton(self.surface, self.x + 120, self.y + self.h + 60, 100, 40, "undo", button_color, True),
+            'clear_button': MyButton(self.surface, self.x + 240, self.y + self.h + 60, 100, 40, "clear", button_color, True),
+            'save_button': MyButton(self.surface, self.x, self.y + self.h + 110, 100, 40, "save", button_color, True),
+            'submit_color': MyButton(self.surface, self.x, self.y + self.h + 60, 100, 40, "submit", button_color, True),            
+            'r': MyButton(self.surface, self.x, self.y + self.h + 10, 100, 40, "r", button_color, True),
+            'g': MyButton(self.surface, self.x + 120, self.y + self.h + 10, 100, 40, "g", button_color, True),
+            'b': MyButton(self.surface, self.x + 240, self.y + self.h + 10, 100, 40, "b", button_color, True)
+        }   
     
     def change_pos(self, new_x, new_y):
         GameObject.change_pos(self, new_x, new_y)
@@ -69,7 +82,8 @@ class DrawingArea(GameObject):
         
     def draw(self):
         self.canvas.draw()
-        
+        for name, obj in self.gui_objects.items(): obj.draw()
+       
 class MyRectangle(GameObject):
     def __init__(self, surface, x, y, w, h, color, visible):
         GameObject.__init__(self, surface, x, y, w, h, color, visible)

@@ -7,11 +7,15 @@ pygame.init()
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 running = True
-
 game_font = pygame.font.SysFont('Comic Sands MS', 30)
 button_color = (128, 128, 128)
 
 game_objects = {
+    'head_save_area': MySurface(screen, 110, -10, 180, 180, (255, 0, 0), True),
+    'torso_save_area': MySurface(screen, 110, 110, 180, 180, (0, 255, 0), True),
+    'larm_save_area': MySurface(screen, 20, 60, 180, 180, (255, 0, 255), True),
+    'rarm_save_area': MySurface(screen, 200, 60, 180, 180, (0, 0, 255), True),
+    'lower_save_area': MySurface(screen, 110, 230, 180, 180, (0, 255, 255), True),
     'pixel_man': MyImage(screen, 'pixel_man.png', 0, 0, True),
     'back_button': MyButton(screen, 10, 550, 100, 40, 'back', button_color, False),
     'head_button': MyButton(screen, 150, 420, 100, 40, 'head', button_color, True), 
